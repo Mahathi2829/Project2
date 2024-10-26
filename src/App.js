@@ -14,9 +14,6 @@ const App = () => {
   
 
 
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]); // Add fetchProducts to the dependency array
   
 
   useEffect(() => {
@@ -39,6 +36,10 @@ const fetchProducts = useCallback(async () => {
     console.error('Error fetching products:', error);
   }
 }, [API_URL]); // Depend on API_URL only
+useEffect(() => {
+  fetchProducts();
+}, [fetchProducts]); // Add fetchProducts to the dependency array
+
 
   const handleAddProduct = async (product) => {
     try {
