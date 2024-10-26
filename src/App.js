@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ProductList from './components/ProductList';
 import ProductForm from './components/ProductForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,9 +9,15 @@ const App = () => {
   const [editIndex, setEditIndex] = useState(null);
   const [deleteMessage, setDeleteMessage] = useState('');
 
+  // Use the API URL from environment variables or fallback to localhost
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+  
+
+
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [fetchProducts]); // Add fetchProducts to the dependency array
+  
 
   useEffect(() => {
     if (deleteMessage) {
@@ -23,22 +29,23 @@ const App = () => {
     }
   }, [deleteMessage]);
 
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch('http://localhost:5001/products');
-      const data = await response.json();
-      setProducts(data);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    }
-  };
+
+const fetchProducts = useCallback(async () => {
+  try {
+    const response = await fetch(`${API_URL}/products`);
+    const data = await response.json();
+    setProducts(data);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+}, [API_URL]); // Depend on API_URL only
 
   const handleAddProduct = async (product) => {
     try {
       if (editIndex !== null) {
         // Update product in the database
         const productId = products[editIndex].id;
-        const response = await fetch(`http://localhost:5001/products/${productId}`, {
+        const response = await fetch(`${API_URL}/products/${productId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -63,7 +70,7 @@ const App = () => {
         setCurrentProduct(null);
       } else {
         // Add a new product if not in edit mode
-        const response = await fetch('http://localhost:5001/products', {
+        const response = await fetch(`${API_URL}/products`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -90,7 +97,7 @@ const App = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5001/products/${id}`, {
+      await fetch(`${API_URL}/products/${id}`, {
         method: 'DELETE',
       });
       const updatedProducts = products.filter((product) => product.id !== id);

@@ -59,3 +59,11 @@
 2024-10-26 10:31:57.878 IST [12040] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.205 s, sync=0.001 s, total=0.214 s; sync files=3, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=1059 kB; lsn=0/19B7190, redo lsn=0/19B7138
 2024-10-26 10:46:57.890 IST [12040] LOG:  checkpoint starting: time
 2024-10-26 10:46:57.998 IST [12040] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.104 s, sync=0.001 s, total=0.110 s; sync files=2, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=953 kB; lsn=0/19B7BC0, redo lsn=0/19B7B68
+2024-10-26 11:01:58.010 IST [12040] LOG:  checkpoint starting: time
+2024-10-26 11:01:58.324 IST [12040] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.307 s, sync=0.001 s, total=0.316 s; sync files=4, longest=0.001 s, average=0.001 s; distance=3 kB, estimate=858 kB; lsn=0/19B8950, redo lsn=0/19B88F8
+2024-10-26 11:06:58.328 IST [12040] LOG:  checkpoint starting: time
+2024-10-26 11:06:58.638 IST [12040] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.306 s, sync=0.001 s, total=0.311 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=773 kB; lsn=0/19B9AD0, redo lsn=0/19B9A78
+2024-10-26 11:11:58.643 IST [12040] LOG:  checkpoint starting: time
+2024-10-26 11:11:58.955 IST [12040] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.306 s, sync=0.001 s, total=0.313 s; sync files=4, longest=0.001 s, average=0.001 s; distance=5 kB, estimate=696 kB; lsn=0/19BAF80, redo lsn=0/19BAF28
+2024-10-26 11:17:57.994 IST [12040] LOG:  checkpoint starting: time
+2024-10-26 11:17:58.308 IST [12040] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.307 s, sync=0.001 s, total=0.315 s; sync files=4, longest=0.001 s, average=0.001 s; distance=5 kB, estimate=627 kB; lsn=0/19BC428, redo lsn=0/19BC3D0
