@@ -25,13 +25,13 @@ const ProductList = ({ products, onEdit, onDelete }) => {
                 <td>
                   <button
                     className="btn btn-primary btn-sm me-2"
-                    onClick={() => onEdit(index)}  // Call onEdit with the index of the product
+                    onClick={() => onEdit(index)}  // Calls onEdit with the index of the product
                   >
                     Edit
                   </button>
                   <button
                     className="btn btn-danger btn-sm"
-                    onClick={() => onDelete(product.id)}  // Call onDelete with the product's id
+                    onClick={() => onDelete(product.id)}  // Calls onDelete with the product's id
                   >
                     Delete
                   </button>

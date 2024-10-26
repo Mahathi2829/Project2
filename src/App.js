@@ -7,18 +7,17 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
-  const [deleteMessage, setDeleteMessage] = useState(''); // State for delete message
+  const [deleteMessage, setDeleteMessage] = useState('');
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
   useEffect(() => {
-    // Clear the delete message after 3 seconds
     if (deleteMessage) {
       const timer = setTimeout(() => {
         setDeleteMessage('');
-      }, 3000); // 3 seconds
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
@@ -37,6 +36,7 @@ const App = () => {
   const handleAddProduct = async (product) => {
     try {
       if (editIndex !== null) {
+        // Update product in the database
         const productId = products[editIndex].id;
         const response = await fetch(`http://localhost:5001/products/${productId}`, {
           method: 'PUT',
@@ -51,12 +51,18 @@ const App = () => {
         }
 
         const updatedProduct = await response.json();
-        const updatedProducts = products.filter((_, index) => index !== editIndex);
-        setProducts([...updatedProducts, updatedProduct]);
 
+        // Update the product in the list
+        const updatedProducts = products.map((p, index) =>
+          index === editIndex ? updatedProduct : p
+        );
+        setProducts(updatedProducts);
+
+        // Reset form state
         setEditIndex(null);
         setCurrentProduct(null);
       } else {
+        // Add a new product if not in edit mode
         const response = await fetch('http://localhost:5001/products', {
           method: 'POST',
           headers: {
@@ -76,7 +82,6 @@ const App = () => {
       console.error('Error:', error);
     }
   };
- 
 
   const handleEdit = (index) => {
     setCurrentProduct(products[index]);
