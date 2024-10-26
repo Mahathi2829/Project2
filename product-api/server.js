@@ -5,11 +5,7 @@ const { Pool } = require('pg');
 
 // Initialize Express app
 const app = express();
-
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on http://0.0.0.0:${PORT}`);
-});
+const PORT = 5001;  // Backend is running on port 5001
 
 
 // Middleware
