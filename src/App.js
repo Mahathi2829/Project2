@@ -76,6 +76,7 @@ const App = () => {
       console.error('Error:', error);
     }
   };
+ 
 
   const handleEdit = (index) => {
     setCurrentProduct(products[index]);
