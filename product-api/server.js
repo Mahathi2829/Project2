@@ -13,12 +13,13 @@ app.use(bodyParser.json());  // Parses incoming JSON data
 
 // PostgreSQL Pool (Connect to your mahathigarapati database)
 const pool = new Pool({
-  user: 'postgres',       // Your PostgreSQL username
-  host: 'localhost',      // Hostname (localhost for local development)
-  database: 'mahathigarapati',  // Change the database to 'mahathigarapati'
-  password: '2004', // Your PostgreSQL password
-  port: 5433,             // PostgreSQL port (change if using a different port)
+  user: process.env.DB_USER || 'postgres',       // PostgreSQL username
+  host: process.env.DB_HOST || 'localhost',      // Hostname
+  database: process.env.DB_NAME || 'mahathigarapati',  // Database name
+  password: process.env.DB_PASSWORD || '2004',   // Password
+  port: process.env.DB_PORT || 5433,             // PostgreSQL port
 });
+
 
 // Verify PostgreSQL connection when server starts
 (async () => {
