@@ -15,11 +15,34 @@ app.use(bodyParser.json());  // Parses incoming JSON data
 // PostgreSQL Pool (Connect to your mahathigarapati database)
 const pool = new Pool({
   user: process.env.DB_USER || 'postgres',       // PostgreSQL username
-  host: process.env.DB_HOST || 'localhost',      // Hostname
+  host: process.env.DB_HOST || '0.0.0.0',      // Hostname (use 'localhost' for local connections)
   database: process.env.DB_NAME || 'mahathigarapati',  // Database name
   password: process.env.DB_PASSWORD || '2004',   // Password
-  port: process.env.DB_PORT || 5433,             // PostgreSQL port
+  port: process.env.DB_PORT || 5432,             // PostgreSQL port
 });
+// Function to initialize the database
+const initializeDatabase = async () => {
+  const createTableQuery = `
+    CREATE TABLE IF NOT EXISTS products (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(100) NOT NULL,
+      description TEXT NOT NULL,
+      price NUMERIC(10, 2) NOT NULL,
+      quantity INT NOT NULL
+    );
+  `;
+
+  try {
+    await pool.query(createTableQuery);
+    console.log('Products table created or verified successfully');
+  } catch (err) {
+    console.error('Error creating products table:', err.message);
+    process.exit(-1);
+  }
+};
+
+// Call the function to initialize the database
+initializeDatabase();
 
 
 // Verify PostgreSQL connection when server starts
